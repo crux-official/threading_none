@@ -1,21 +1,9 @@
-# The no-op threading implementation: the honest-absence substitution for
-# the threading slot (the logging_none shape). A pure-logic / headless cell
-# names this driver so the concern is declared-but-absent: it registers NO
-# concern bit (its construct registers nothing), so
-# Engine_Supports(CRUX_CONCERN_THREADING) is false and the cell's absence
-# is honest. It serves the same contract names as no-ops (PoolCreate
-# returns NULL, PoolWaitAll returns immediately), so a static consumer of
-# the concern's headers still links — and stays a pure-logic build
-# ((word & CRUX_CONCERN_OPTIONAL) == 0 holds: the bit is never set).
-# It makes no platform calls, so the platforms list is the
-# platform-agnostic claim: 'any'.
-format_version = 1
+format_version = 2
 name   = "threading_none"
 kind   = "implementation"
-api    = "threading"
-supported_platforms = ["any"]
-version        = "1.0.0"
-implements_api = "1.0.0"
-requires = [
-  { package = "threading", window = "1.0.0" },
+version = "2.0.0"
+implements = [
+  { interface = "threading", window = "1.0.0" },
 ]
+source   = "threading_none.c"
+supported_platforms = ["any"]
